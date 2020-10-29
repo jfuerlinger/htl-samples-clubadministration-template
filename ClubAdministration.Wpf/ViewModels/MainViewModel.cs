@@ -9,30 +9,30 @@ namespace ClubAdministration.Wpf.ViewModels
 {
   public class MainViewModel : BaseViewModel
   {
-
-
     public MainViewModel(IWindowController windowController) : base(windowController)
     {
       LoadCommands();
     }
 
-
     private void LoadCommands()
     {
     }
 
+    private Task LoadDataAsync()
+    {
+      throw new NotImplementedException();
+    }
 
     public override IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
     {
       throw new NotImplementedException();
     }
 
-    /// <summary>
-    /// Initialisiert das ViewModel (lang laufende Datenladevorgänge, etc.).
-    /// </summary>
-    public override Task InitAsync()
+    public static async Task<MainViewModel> CreateAsync(IWindowController windowController)
     {
-      throw new NotImplementedException();
+      var viewModel = new MainViewModel(windowController);
+      await viewModel.LoadDataAsync();
+      return viewModel;
     }
   }
 }

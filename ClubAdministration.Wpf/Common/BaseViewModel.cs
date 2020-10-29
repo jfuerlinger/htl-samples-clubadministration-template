@@ -5,13 +5,12 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
-using System.Threading.Tasks;
 using ValidationResult = System.ComponentModel.DataAnnotations.ValidationResult;
 
 namespace ClubAdministration.Wpf.Common
 {
   public abstract class BaseViewModel : NotifyPropertyChanged,
-                            INotifyDataErrorInfo, IValidatableObject, IViewModel
+                            INotifyDataErrorInfo, IValidatableObject
   {
     // Validation
     private bool _hasErrors;
@@ -156,15 +155,6 @@ namespace ClubAdministration.Wpf.Common
     public abstract IEnumerable<ValidationResult> Validate(ValidationContext validationContext);
 
     #endregion
-
-    #region IViewModel Members
-
-    public virtual Task InitAsync()
-    {
-      return Task.CompletedTask;
-    }
-
-    #endregion
-
+  
   }
 }

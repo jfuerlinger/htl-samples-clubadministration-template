@@ -9,19 +9,10 @@ namespace ClubAdministration.Wpf
   /// </summary>
   public partial class App : Application
   {
-    private MainViewModel _mainWindowViewModel;
-
-    public App()
-    {
-    }
-
-    private void App_Startup(object sender, StartupEventArgs e)
+    private async void App_Startup(object sender, StartupEventArgs e)
     {
       WindowController controller = new WindowController();
-      _mainWindowViewModel = new MainViewModel(controller);
-      controller.ShowWindow(_mainWindowViewModel);
-
-      Dispatcher.Invoke(async () => await _mainWindowViewModel.InitAsync());
+      controller.ShowWindow(await MainViewModel.CreateAsync(controller));
     }
   }
 }
